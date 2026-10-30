@@ -51,7 +51,7 @@ public class Cotizador {
             return suma;
         }
 
-        public String describir() { return String.format("Subtotal: $%.2f", total()); }
+        public String describir() { return "Subtotal: Bs" + total(); }
     }
 
     //Decorador padre que contiene a la cotizacion  y sus metodos.
@@ -88,7 +88,7 @@ public class Cotizador {
         }
 
         public String describir() {
-            return cotizacion.describir() + String.format("%n  - %.0f%% en %s", porcentaje * 100, producto);
+            return cotizacion.describir() + "\n" + (porcentaje * 100) + "% en " + producto;
         }
     }
 
@@ -105,7 +105,7 @@ public class Cotizador {
         public double total() { return cotizacion.total() * (1 - porcentaje); }
 
         public String describir() {
-            return cotizacion.describir() + String.format("%n  - %.0f%% sobre total", porcentaje * 100);
+            return cotizacion.describir() + "\n-" + (porcentaje * 100) + "% sobre total";
         }
     }
 
@@ -157,7 +157,7 @@ public class Cotizador {
 
         ArrayList<String> nombres = new ArrayList<>();
         ArrayList<Double> precios = new ArrayList<>();
-
+        // Pide los datos
         System.out.print("Cantidad de productos: ");
         int n = Integer.parseInt(sc.nextLine().trim());
         for (int i = 0; i < n; i++) {
@@ -183,13 +183,13 @@ public class Cotizador {
         // Factory Method crea el contexto con la estrategia correcta
         CotizacionConEstrategia cot = creador.crear(c);
 
+        // Se devuelve el detalle final de la cotizacion 
         System.out.println("\nDETALLE");
         for (int i = 0; i < nombres.size(); i++)
-            System.out.printf("%-12s $%.2f%n", nombres.get(i), precios.get(i));
-
+            System.out.printf(nombres.get(i) + precios.get(i));
         System.out.println(cot.getCotizacion().describir());
-        System.out.printf("Estrategia cliente: %s%n", cot.getEstrategia().nombre());
-        System.out.printf("TOTAL FINAL: $%.2f%n", cot.totalFinal());
+        System.out.printf("Estrategia cliente: " + cot.getEstrategia().nombre() + "%n");
+        System.out.printf("TOTAL FINAL:" + cot.totalFinal() + " %n");
         sc.close();
     }
 }

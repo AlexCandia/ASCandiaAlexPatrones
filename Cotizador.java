@@ -186,10 +186,10 @@ public class Cotizador {
         // Se devuelve el detalle final de la cotizacion 
         System.out.println("\nDETALLE");
         for (int i = 0; i < nombres.size(); i++)
-            System.out.printf(nombres.get(i) + precios.get(i));
+            System.out.println(nombres.get(i) + precios.get(i));
         System.out.println(cot.getCotizacion().describir());
-        System.out.printf("Estrategia cliente: " + cot.getEstrategia().nombre() + "%n");
-        System.out.printf("TOTAL FINAL:" + cot.totalFinal() + " %n");
+        System.out.println("Tipo de cliente: " + cot.getEstrategia().nombre());
+        System.out.println("TOTAL FINAL:" + cot.totalFinal());
         sc.close();
     }
 }
